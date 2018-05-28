@@ -13,6 +13,7 @@ public:
 	void display();
 	void conversion(double a, double b);
 	CFeet operator +(CFeet & oj);
+	CFeet operator-(CFeet & ojj);
 	double conversionf(double a, double b);
 private:
 	int feet;
@@ -54,10 +55,19 @@ double CFeet::conversionf(double a, double b)
 	return feet1;
 }
 
+CFeet CFeet::operator-(CFeet & ojj)
+{
+	CFeet add;
+	int feet11;
+	feet11 = feet1 - ojj.feet1;
+	feet = feet11;
+	inch = (feet11 - feet) * 12;
+	return add;
+}
 
 int main()
 {
-	CFeet A, B, C,D;
+	CFeet A, B, C,D,E;
 	double feet, inch;
 	double menter, cenjimeter;
 	cout << "ÊäÈëÓ¢³ßÓ¢´ç" << endl;
@@ -73,6 +83,8 @@ int main()
 	feet = D.conversionf(menter, cenjimeter);
 	D.conversion(feet,0);
 	D.display();
+	E = C - D;
+	E.display();
 	return 0;
 }
 
