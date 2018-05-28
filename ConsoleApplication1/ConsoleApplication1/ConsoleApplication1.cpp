@@ -11,13 +11,13 @@ public:
 	CFeet();
 	~CFeet();
 	void display();
-	void conversion(int a, int b);
+	void conversion(double a, double b);
 	CFeet operator +(CFeet & ojbk);
 
 
 private:
 	int feet;
-	int inch;
+	double inch;
 
 };
 
@@ -34,10 +34,10 @@ void CFeet::display()
 	cout << feet << "  " << inch << endl;
 }
 
-void CFeet::conversion(int a, int b)
+void CFeet::conversion(double a, double b)
 {
-	inch = b % 12;
 	feet = a + b / 12;
+	inch = ((a + b / 12) - feet) * 12;
 }
 
 CFeet CFeet::operator+(CFeet & ojbk)
@@ -52,14 +52,12 @@ int main()
 {
 	CFeet A, B, C;
 	cout << "ÊäÈëÓ¢³ßÓ¢´ç" << endl;
-	int feet, inch;
+	double feet, inch;
 	cin >> feet >> inch;
 	A.conversion(feet, inch);
-	A.display();
 	cout << "ÊäÈëÓ¢³ßÓ¢´ç" << endl;
 	cin >> feet >> inch;
 	B.conversion(feet, inch);
-	B.display();
 	C = A + B;
 	C.display();
 	return 0;
