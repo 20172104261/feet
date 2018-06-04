@@ -14,12 +14,10 @@ public:
 	void conversion(double a, double b);
 	CFeet operator +(CFeet & oj);
 	CFeet operator-(CFeet & ojj);
-	double conversionf(double a, double b);
+	void conversionf(double a, double b);
 private:
-	int feet;
 	double inch;
-	double feet1;
-
+	double feet;
 };
 
 CFeet::CFeet()
@@ -36,10 +34,10 @@ void CFeet::display()
 }
 
 void CFeet::conversion(double a, double b)
-{
-	feet = a + b / 12;
-	feet1 = a + b / 12;
-	inch = (feet1 - feet) * 12;
+{ 
+	feet = (int)((a * 12 + b) / 12);
+	inch = (((a * 12 + b )/ 12) - feet)*12;
+	cout << feet << "  " << inch << endl;
 }
 
 CFeet CFeet::operator+(CFeet & oj)
@@ -49,25 +47,23 @@ CFeet CFeet::operator+(CFeet & oj)
 	return add;
 }
 
-double CFeet::conversionf(double a, double b)
+void CFeet::conversionf(double a, double b)
 {
-	feet1 = (a + b / 100)*3.2808399;
-	return feet1;
+	feet = (int)((a + b / 100)*3.2808399);
+	inch = ((a + b / 100)*3.2808399 - feet)*12;
+
 }
 
 CFeet CFeet::operator-(CFeet & ojj)
 {
 	CFeet add;
-	int feet11;
-	feet11 = feet1 - ojj.feet1;
-	feet = feet11;
-	inch = (feet11 - feet) * 12;
+	add.conversion(feet - ojj.feet, inch - ojj.inch);
 	return add;
 }
 
 int main()
 {
-	CFeet A, B, C,D,E;
+	CFeet A, B, C, D, E;
 	double feet, inch;
 	double menter, cenjimeter;
 	cout << "ÊäÈëÓ¢³ßÓ¢´ç" << endl;
@@ -80,8 +76,7 @@ int main()
 	C.display();
 	cout << "ÊäÈëÃ×ºÁÃ×" << endl;
 	cin >> menter >> cenjimeter;
-	feet = D.conversionf(menter, cenjimeter);
-	D.conversion(feet,0);
+	D.conversionf(menter, cenjimeter);
 	D.display();
 	E = C - D;
 	E.display();
